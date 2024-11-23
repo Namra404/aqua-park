@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,8 +36,6 @@ class UserController extends Controller
             'phone_number' => 'nullable|string|max:15',
             'role' => 'nullable|string|in:customer,admin,manager',
         ]);
-
-        $validated['password'] = Hash::make($validated['password']);
 
         $user = User::create($validated);
         return response()->json($user, 201);
