@@ -42,16 +42,16 @@ class UserController extends Controller
     }
 
     // Обновление пользователя
-    public function update(Request $request, $id)
+    public function update(Request $request, $userId)
     {
-        $user = User::find($id);
+        $user = User::find($userId);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
 
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
-            'email' => 'nullable|string|email|max:255|unique:users,email,' . $user->user_id,
+            'email' => 'nullable|string|email|max:255|unique:users,email,' . $userId . ',user_id', // Используйте user_id вместо id
             'password' => 'nullable|string|min:6',
             'phone_number' => 'nullable|string|max:15',
             'role' => 'nullable|string|in:customer,admin,manager',
