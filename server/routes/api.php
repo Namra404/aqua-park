@@ -14,11 +14,10 @@ use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-//Route::apiResource('register', AuthController::class);
+
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
-
 
 
 
@@ -33,4 +32,12 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('service-review', ServiceReviewController::class);
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('testing', Testing::class);
+
+    Route::middleware('role:admin')->group(function () {
+        Route::put('users/{user}', [UserController::class, 'update']);
+        Route::delete('users/{user}', [UserController::class, 'destroy']);
+    });
+
 });
+
+
