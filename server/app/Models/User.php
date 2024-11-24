@@ -2,28 +2,44 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
+    use Notifiable;
 
-    // Разрешённые поля для массового заполнения
+    // Разрешенные поля для массового заполнения
     protected $fillable = ['name', 'email', 'password', 'role'];
 
     // Связь с билетами
-    public function tickets() {
+    public function tickets()
+    {
         return $this->hasMany(Ticket::class);
     }
 
     // Связь с отзывами на горки
-    public function slideReviews() {
+    public function slideReviews()
+    {
         return $this->hasMany(SlideReview::class);
     }
 
     // Связь с отзывами на дополнительные услуги
-    public function serviceReviews() {
+    public function serviceReviews()
+    {
         return $this->hasMany(ServiceReview::class);
+    }
+
+    // Реализация метода getJWTIdentifier
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    // Реализация метода getJWTCustomClaims
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

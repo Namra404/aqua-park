@@ -15,8 +15,16 @@ class UserController extends Controller
         return response()->json($users);
     }
 
+    // Создание нового пользователя (для этого может быть доступ только администратор)
     public function store(Request $request)
     {
+        $user = auth()->user(); // Получаем текущего авторизованного пользователя
+
+        // Разрешаем создание пользователей только администраторам
+        if ($user->role !== 'admin') {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -24,7 +32,7 @@ class UserController extends Controller
             'role' => 'required|in:admin,manager,user',
         ]);
 
-        $user = User::create([
+        $newUser = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
@@ -33,10 +41,9 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'User created successfully!',
-            'user' => $user,
+            'user' => $newUser,
         ], 201);
     }
-
 
     // Получение одного пользователя
     public function show(User $user)
@@ -47,6 +54,13 @@ class UserController extends Controller
     // Обновление пользователя
     public function update(Request $request, User $user)
     {
+        $authenticatedUser = auth()->user(); // Получаем текущего авторизованного пользователя
+
+        // Разрешаем обновление только администратору или самому пользователю
+        if ($authenticatedUser->role !== 'admin' && $authenticatedUser->id !== $user->id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
@@ -63,6 +77,13 @@ class UserController extends Controller
     // Удаление пользователя
     public function destroy(User $user)
     {
+        $authenticatedUser = auth()->user(); // Получаем текущего авторизованного пользователя
+
+        // Разрешаем удаление только администратору или самому пользователю
+        if ($authenticatedUser->role !== 'admin' && $authenticatedUser->id !== $user->id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $user->delete();
         return response()->json([
             'message' => 'User deleted successfully!',
