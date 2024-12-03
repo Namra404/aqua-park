@@ -1,0 +1,48 @@
+.text{
+    @apply text-black
+    text-xl
+    font-medium;
+
+    &_small {
+        @apply text-black
+        text-sm
+        font-normal
+    }
+
+    &_small_bold {
+        @apply text-black
+        font-semibold
+        text-base
+    }
+
+    &_medium_bold {
+        @apply text-black
+        font-bold
+        text-xl
+    }
+
+    &_tittle {
+        @apply text-black
+        text-2xl
+        font-bold
+    }
+
+    &_subtitle {
+        @apply text-black
+        text-2xl
+        font-bold
+    }
+}
+
+
+.asLink {
+    @apply cursor-pointer
+}
+
+.opacity {
+    @apply opacity-[0.6]
+}
+
+.white {
+    @apply text-white
+}

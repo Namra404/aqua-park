@@ -1,0 +1,4 @@
+
+.header_main {
+    @apply max-w-page w-full mx-auto py-10 flex justify-between items-center gap-6
+}
