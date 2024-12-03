@@ -21,6 +21,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
+            'image' => 'nullable|string|max:2048', // Проверяем, что image — строка (например, URL)
         ]);
 
         $service = Service::create($validated);
@@ -36,6 +37,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
+            'image' => 'nullable|string|max:2048', // Проверяем, что image — строка
         ]);
 
         $service->update($validated);
