@@ -9,9 +9,8 @@ class Slide extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'image', 'category'];
 
-    // Связь с отзывами
     public function reviews() {
         return $this->hasMany(SlideReview::class);
     }

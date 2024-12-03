@@ -21,6 +21,8 @@ class SlideController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image' => 'nullable|string', // Убедитесь, что передаётся ссылка на изображение
+            'category' => 'nullable|string',
         ]);
 
         $slide = Slide::create($validated);
@@ -42,6 +44,8 @@ class SlideController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image' => 'nullable|string',
+            'category' => 'nullable|string',
         ]);
 
         $slide->update($validated);
