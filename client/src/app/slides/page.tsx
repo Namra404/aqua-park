@@ -9,7 +9,7 @@ export default function Slides()  {
             <div className={'grid grid-cols-3 gap-4'}>
                 {
                     slidersEnum.map((item, index) => (
-                        <SlideCard name={item.name} key={index}/>
+                        <SlideCard key={index} {...item}/>
                     ))
                 }
             </div>

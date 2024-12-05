@@ -1,6 +1,6 @@
+import {AllHTMLAttributes} from "react";
 
-
-export type SlideProps = {
+export interface SlideProps extends AllHTMLAttributes<HTMLParagraphElement> {
     img?: string;
     name: string;
     description?: string;

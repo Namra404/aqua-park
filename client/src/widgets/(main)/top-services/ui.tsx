@@ -14,7 +14,7 @@ export const TopServices = (props: Props) => {
         <>
             <Text className={'flex justify-center mb-5'} type={'tittle'}>Top Destinations</Text>
             <Carousel>
-                <CarouselContent>
+                <CarouselContent className={'pointer-events-none'}>
                     {
                         services.map((service: ServiceType, index) => (
                             <CarouselItem className="basis-1/3" key={index}>
