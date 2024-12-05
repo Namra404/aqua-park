@@ -15,6 +15,8 @@ class Order extends Model
         'discount',
     ];
 
+    protected $with = ['tickets'];
+
     // Связь с пользователем
     public function user()
     {
@@ -25,5 +27,11 @@ class Order extends Model
     public function promoCode()
     {
         return $this->belongsTo(PromoCode::class);
+    }
+
+    // Связь с тикетами
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

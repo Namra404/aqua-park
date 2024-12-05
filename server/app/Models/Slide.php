@@ -14,4 +14,9 @@ class Slide extends Model
     public function reviews() {
         return $this->hasMany(SlideReview::class);
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
