@@ -8,6 +8,6 @@ type Props = PropsWithChildren & {
 export const Page = (props: Props) => {
   const { className, children } = props;
   return (
-    <main className={cn('max-w-page w-full mx-auto flex-page flex flex-col', className)}>{children}</main>
+    <main className={cn('max-w-[950px] w-full mx-auto flex-page flex flex-col', className)}>{children}</main>
   );
 };
