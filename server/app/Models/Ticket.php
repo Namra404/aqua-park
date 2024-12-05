@@ -10,7 +10,7 @@ class Ticket extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'slide_id', 'type', 'price', 'date', 'status'];
-    protected $with = ['slide'];
+    protected $with = ['slide', 'services'];
     // Связь с пользователем
     public function user()
     {

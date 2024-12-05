@@ -10,13 +10,13 @@ class TicketController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::with('slide')->get();
+        $tickets = Ticket::with('slide', 'services')->get();
         return response()->json($tickets);
     }
 
     public function show($id)
     {
-        $ticket = Ticket::with('slide')->find($id);
+        $ticket = Ticket::with('slide', 'services')->find($id);
         if (!$ticket) {
             return response()->json(['message' => 'Ticket not found'], 404);
         }
@@ -39,7 +39,8 @@ class TicketController extends Controller
         $ticket = Ticket::create($validated);
 
         // Загружаем связь slide
-        $ticket->load('slide');
+
+        $ticket->load('slide', 'services');
 
         // Возвращаем созданный тикет в формате JSON с кодом ответа 201
         return response()->json($ticket, 201);
@@ -66,7 +67,8 @@ class TicketController extends Controller
         $ticket->update($validated);
 
         // Загружаем связь slide
-        $ticket->load('slide');
+        $ticket->load('slide', 'services');
+
 
         return response()->json($ticket);
     }

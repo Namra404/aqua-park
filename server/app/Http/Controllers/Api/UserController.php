@@ -11,6 +11,12 @@ class UserController extends Controller
     // Получение всех пользователей
     public function index()
     {
+        $authenticatedUser = auth()->user(); // Получаем текущего авторизованного пользователя
+
+        // Разрешаем удаление только администратору или самому пользователю
+        if ($authenticatedUser->role !== 'admin' && $authenticatedUser->id !== $user->id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
         $users = User::all();
         return response()->json($users);
     }
