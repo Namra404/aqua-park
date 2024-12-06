@@ -85,10 +85,8 @@ class OrderController extends Controller
                     $ticket->services()->attach($ticketData['services']);
                 }
 
-                // Если статус билета "не забронирован", добавляем его цену к totalPrice
-                if ($ticketData['status'] === 'не забронирован') {
-                    $totalPrice += $ticketData['price'];
-                }
+                // Добавляем цену тикета к totalPrice, независимо от статуса
+                $totalPrice += $ticketData['price'];
             }
 
             // Проверяем промокод, если он передан
