@@ -8,10 +8,21 @@ use Illuminate\Http\Request;
 
 class SlideReviewController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Получить все отзывы с данными о пользователях и горках
-        $reviews = SlideReview::with(['user', 'slide'])->get();
+        // Создаем базовый запрос с подгрузкой связанных моделей
+        $query = SlideReview::with(['user', 'slide']);
+
+        // Проверяем, есть ли в запросе параметр slide_id
+        if ($request->has('slide_id')) {
+            $slideId = $request->query('slide_id');
+            // Можно добавить дополнительную валидацию slideId если необходимо
+            $query->where('slide_id', $slideId);
+        }
+
+        // Выполняем запрос и получаем отзывы
+        $reviews = $query->get();
+
         return response()->json($reviews);
     }
 
