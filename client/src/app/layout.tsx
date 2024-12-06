@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import './globals.scss';
 import { Header } from '~/widgets/header';
 import { Footer } from '~/widgets/footer';
+import { Toaster } from '~/shared/ui/toaster';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

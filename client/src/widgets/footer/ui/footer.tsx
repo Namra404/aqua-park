@@ -62,8 +62,7 @@ export const Footer = () => {
 					type='small-bold'
 					opacity
 				>
-					©Copyright Аквапарк Арман Дорабатывай {new Date().getFullYear()}. Design by Станислав Сергеев при руководстве
-					Игоря)
+					©Copyright Аквапарк Ахпер {new Date().getFullYear()}. Design by Станиslave Сергеев при руководстве Игоря)
 				</Text>
 			</div>
 		</footer>

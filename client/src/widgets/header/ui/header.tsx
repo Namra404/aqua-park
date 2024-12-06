@@ -40,7 +40,6 @@ export const Header = () => {
 			/>
 			<Text asLink>Популярные горки</Text>
 			<Text asLink>Дополнительные сервисы</Text>
-			<Text asLink>Отзывы</Text>
 			{authStatus ? (
 				<div className={'flex items-center'}>
 					<Link href={ROUTER.pages.CART}>
