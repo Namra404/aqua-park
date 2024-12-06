@@ -1,15 +1,12 @@
 import { Page } from '~/shared/ui/page';
 
 import logo from '../../../public/avatar.png';
-import { SlidesAndServices } from '~/shared/mock/constants/constants';
 import { ProfileOrdersTotal } from '~/widgets/(profile)/profile-orders';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/shared/ui/tabs';
-import { ProfileTickets } from '~/widgets/(profile)/profile-tickets/ui/profile-tickets';
 import { Text } from '~/shared/ui/text';
 import Image from 'next/image';
 import { cookies } from 'next/headers';
 import { OrderService } from '~/entities/order/api';
-import { User2 } from 'lucide-react';
 
 export const handleGetHistoryOrders = async () => {
 	'use server';
