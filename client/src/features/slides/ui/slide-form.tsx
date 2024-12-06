@@ -1,12 +1,26 @@
+'use client';
 import images from '../../../../public/Card.png';
 
 import style from './style.module.scss';
 import { Text } from '~/shared/ui/text';
 import { Button } from '~/shared/ui/button';
 import Image from 'next/image';
+import { toast } from '~/shared/lib/hooks/use-toast';
+import { useRouter } from 'next/navigation';
+import { ROUTER } from '~/shared/config/router';
 
 export const SlideForm = (props: slide.SlideDto) => {
 	const { image, name, description, category } = props;
+	const router = useRouter();
+
+	const handleAddToCart = () => {
+		toast({
+			variant: 'default',
+			title: 'Корзина',
+			description: 'Перейдите в корзину, чтобы подтвердить бронь',
+			onClick: () => router.push(ROUTER.pages.CART)
+		});
+	};
 
 	return (
 		<div className={style.slide_form}>
@@ -33,7 +47,12 @@ export const SlideForm = (props: slide.SlideDto) => {
 			>
 				Возрастная кагетория: {category}
 			</Text>
-			<Button className={'max-w-[150px] w-full absolute right-4 bottom-4'}>Забронировать</Button>
+			<Button
+				className={'max-w-[150px] w-full absolute right-4 bottom-4'}
+				onClick={handleAddToCart}
+			>
+				Забронировать
+			</Button>
 		</div>
 	);
 };

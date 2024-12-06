@@ -1,29 +1,31 @@
-import { Inter } from 'next/font/google'
+import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import './globals.scss';
 import { Header } from '~/widgets/header';
 import { Footer } from '~/widgets/footer';
+import { Toaster } from '~/shared/ui/toaster';
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'] })
+const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export const metadata: Metadata = {
-  title: 'Аквапарк',
-  description:
-    'Много различных крутый горок, на которых можно кататься с семьей и друзьями. Сдаем в аренду водяные пистолеты'
+	title: 'Аквапарк',
+	description:
+		'Много различных крутый горок, на которых можно кататься с семьей и друзьями. Сдаем в аренду водяные пистолеты'
 };
 
 export default function RootLayout({
-  children
+	children
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang='en'>
-      <body className={`${inter.className} antialiased flex flex-col h-screen`}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
-  );
+	return (
+		<html lang='en'>
+			<body className={`${inter.className} antialiased flex flex-col h-screen`}>
+				<Header />
+				{children}
+				<Footer />
+				<Toaster />
+			</body>
+		</html>
+	);
 }
