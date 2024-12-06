@@ -9,6 +9,7 @@ import { Text } from '~/shared/ui/text';
 import Image from 'next/image';
 import { cookies } from 'next/headers';
 import { OrderService } from '~/entities/order/api';
+import { User2 } from 'lucide-react';
 
 export const handleGetHistoryOrders = async () => {
 	'use server';
@@ -46,7 +47,6 @@ export default async function Profile() {
 				>
 					<TabsList className={'relative w-[200] bg-[#191A38] flex flex-col h-full justify-start items-stretch mr-10'}>
 						<TabsTrigger value='history'>История заказов</TabsTrigger>
-						<TabsTrigger value='tickets'>Отзывы</TabsTrigger>
 						<div className={'absolute flex justify-between items-center bottom-2'}>
 							<Image
 								className={'bg-white rounded-full'}
@@ -65,9 +65,6 @@ export default async function Profile() {
 					</TabsList>
 					<TabsContent value='history'>
 						<ProfileOrdersTotal orders={orders} />
-					</TabsContent>
-					<TabsContent value='tickets'>
-						<ProfileTickets />
 					</TabsContent>
 				</Tabs>
 			</div>

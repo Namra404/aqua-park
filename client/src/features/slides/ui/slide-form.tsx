@@ -12,6 +12,7 @@ import { OrderService } from '~/entities/order/api';
 import moment from 'moment';
 import { AdditionalService } from '~/entities/service/api';
 import { TicketService } from '~/entities/ticket/api';
+import { useEffect } from 'react';
 
 export const SlideForm = (props: slide.SlideDto) => {
 	const { image, name, description, category, id } = props;
