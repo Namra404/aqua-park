@@ -27,7 +27,7 @@ export const TopServices = (props: Props) => {
 							<SlideCard
 								name={service.name}
 								price={service.price}
-								services={services}
+								image={service.image}
 							/>
 						</CarouselItem>
 					))}

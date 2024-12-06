@@ -19,4 +19,8 @@ module order {
 	type Cart = {
 		orders: CartOrder[];
 	};
+
+	type CreatedOrder = {
+		order: CartOrder;
+	};
 }

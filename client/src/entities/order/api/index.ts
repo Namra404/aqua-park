@@ -1,13 +1,15 @@
 import { api } from '~/shared/lib/request';
 import qs from 'qs';
+import { AxiosRequestConfig } from 'axios';
 
 export class OrderService {
 	createOrder(order: order.CreateParams) {
-		return api.fetch.post<void>('/orders', order);
+		return api.fetch.post<order.CreatedOrder>('/orders', order);
 	}
 
-	getCart(status: ticket.Status) {
+	getCart(status: ticket.Status, config?: AxiosRequestConfig) {
 		return api.fetch.get<order.Cart>(`/orders`, {
+			...config,
 			params: {
 				status
 			},

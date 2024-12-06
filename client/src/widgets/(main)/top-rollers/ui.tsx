@@ -36,10 +36,7 @@ export const TopSliders: FC<TopSlidersProps> = props => {
 				{props.sliders.slice(0, 6).map((item, index) => (
 					<SlideCard
 						key={index}
-						image={item.image}
-						name={item.name}
-						description={item.description}
-						category={item.category}
+						{...item}
 					/>
 				))}
 			</div>

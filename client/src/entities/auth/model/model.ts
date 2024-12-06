@@ -3,6 +3,9 @@ import { atom } from 'nanostores';
 import { LoginFormType, RegisterFormType } from '~/features/auth/model/schema';
 import { AuthService } from '../api';
 import Cookies from 'js-cookie';
+import { revalidatePath } from 'next/cache';
+import { ROUTER } from '~/shared/config/router';
+import { updatePages } from './actions';
 
 export const COOKIE_USER_KEY = 'aqua-park-user';
 
@@ -17,12 +20,10 @@ export class AuthStorage {
 	}
 
 	sync() {
-		try {
-			const user = JSON.parse(Cookies.get(this.COOKIE_USER_KEY) ?? '');
-			if (user) {
-				this._status.set(true);
-			}
-		} catch {
+		const user = Cookies.get(COOKIE_USER_KEY);
+		if (user) {
+			this._status.set(true);
+		} else {
 			this.logout();
 		}
 	}
@@ -31,7 +32,8 @@ export class AuthStorage {
 		try {
 			const response = await this.authService.login(values);
 			this._status.set(true);
-			Cookies.set(this.COOKIE_USER_KEY, JSON.stringify(response.data));
+			Cookies.set(this.COOKIE_USER_KEY, response.data.token);
+			await updatePages();
 		} catch (e) {
 			console.error(e);
 		}
@@ -40,13 +42,16 @@ export class AuthStorage {
 		try {
 			const response = await this.authService.register(values);
 			this._status.set(true);
-			Cookies.set(this.COOKIE_USER_KEY, JSON.stringify(response.data));
+			Cookies.set(this.COOKIE_USER_KEY, response.data.token);
+			await updatePages();
 		} catch (e) {
 			console.error(e);
 		}
 	}
 	async logout() {
 		this._status.set(false);
+		Cookies.remove(this.COOKIE_USER_KEY);
+		await updatePages();
 	}
 
 	static instance = new AuthStorage(new AuthService());
