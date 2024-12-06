@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export module api {
 	export const fetch = axios.create({
-		baseURL: process.env.API_URL,
+		baseURL: 'http://localhost:8000/api',
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',

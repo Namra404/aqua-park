@@ -13,6 +13,17 @@ module auth {
 
   type Role = 'admin' | 'user'
 
-  type User = {}
+  type User = {
+    id: number;
+    name: string;
+    email: string;
+    password: string;
+    update_at: string;
+    create_at: string;
+  }
 
+  type AuthResponse = {
+    user: User;
+    token: string;
+  }
 }

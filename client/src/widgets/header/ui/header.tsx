@@ -23,10 +23,15 @@ import {
 	DropdownMenuTrigger
 } from '~/shared/ui/dropdown-menu';
 import { LogOut } from 'lucide-react';
+import { useEffect } from 'react';
 
 export const Header = () => {
 	const router = useRouter();
 	const authStatus = useStore(AuthStorage.instance.status);
+
+	useEffect(() => {
+		AuthStorage.instance.sync();
+	}, []);
 
 	return (
 		<header className={style.header_main}>

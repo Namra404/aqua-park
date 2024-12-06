@@ -67,6 +67,7 @@ export const RegisterForm = () => {
 							<FormLabel>Password</FormLabel>
 							<FormControl>
 								<Input
+									type='password'
 									placeholder='Введите пароль'
 									{...field}
 								/>

@@ -49,6 +49,7 @@ export const LoginForm = () => {
 							<FormLabel>Password</FormLabel>
 							<FormControl>
 								<Input
+                  type='password'
 									placeholder='Введите пароль'
 									{...field}
 								/>
