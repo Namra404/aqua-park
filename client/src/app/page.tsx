@@ -5,13 +5,13 @@ import { TopServices } from '~/widgets/(main)/top-services/ui';
 import { ServicesEnum } from '~/shared/mock/constants/constants';
 import { SlideService } from '~/entities/slide/api';
 import { cookies } from 'next/headers';
-import { AuthStorage } from '~/entities/auth';
+import { COOKIE_USER_KEY } from '~/entities/auth/model/model';
 
 const handleGetSlides = async () => {
 	'use server';
 	const cookiesStorage = await cookies();
 
-	const token = cookiesStorage.get(AuthStorage.instance.COOKIE_USER_KEY);
+	const token = cookiesStorage.get(COOKIE_USER_KEY);
 	if (!token) {
 		return [];
 	}

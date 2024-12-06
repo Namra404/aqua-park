@@ -4,10 +4,12 @@ import { LoginFormType, RegisterFormType } from '~/features/auth/model/schema';
 import { AuthService } from '../api';
 import Cookies from 'js-cookie';
 
+export const COOKIE_USER_KEY = 'aqua-park-user';
+
 export class AuthStorage {
 	private constructor(private readonly authService: AuthService) {}
 
-	COOKIE_USER_KEY = 'aqua-park-user';
+	COOKIE_USER_KEY = COOKIE_USER_KEY;
 	private _status = atom<boolean>(true);
 
 	get status() {
