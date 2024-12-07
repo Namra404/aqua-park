@@ -2,6 +2,8 @@ import style from './style.module.scss';
 import { Text } from '~/shared/ui/text';
 import Image from 'next/image';
 import { SlideForm, SlideModal } from '~/features/slides';
+import {CommentsForm} from "~/features/comments";
+import {CommentMok} from "~/features/comments/ui/comments-form";
 
 type Props = { price?: number } & slide.SlideDto;
 
@@ -35,10 +37,13 @@ export const SlideCard = (props: Props) => {
 					</div>
 				}
 			>
-				<SlideForm
-					{...props}
-					description={description}
-				/>
+				<div className={'flex p-2'}>
+					<SlideForm
+						{...props}
+						description={description}
+					/>
+					<CommentsForm comments={CommentMok}/>
+				</div>
 			</SlideModal>
 		</>
 	);

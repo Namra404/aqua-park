@@ -27,10 +27,16 @@
         font-bold
     }
 
+    &_medium {
+        @apply text-black
+        text-base
+        font-medium
+    }
+
     &_subtitle {
         @apply text-black
         text-2xl
-        font-bold
+        font-normal
     }
 }
 

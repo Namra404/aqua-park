@@ -22,6 +22,7 @@ export const Text: FC<TextProps> = (props) => {
                 [style.text_medium_bold]: type === 'medium-bold',
                 [style.text_tittle]: type === 'tittle',
                 [style.text_subtitle]: type === 'subtitle',
+                [style.text_medium]: type === 'medium',
                 [style.asLink]: asLink,
                 [style.opacity]: opacity,
                 [style.white]: white,

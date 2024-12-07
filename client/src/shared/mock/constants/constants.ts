@@ -1,57 +1,57 @@
-import { SlideProps } from '~/entities/popular-rollers/model/types';
+import logo from '../../../../public/Card.png'
 
 export const slidersEnum: slide.SlideDto[] = [
 	{
-		image: '',
+		image: {logo},
 		name: '«Ковер-самолет»',
 		description:
 			'Водные горки считаются наиболее популярными аттракционами в любом аквапарке. Принцип их работы не затейлив. Он заключается в спуске человека в бассейн или естественный водоем по гладкой, наклонной поверхности. Подача в верхнюю часть сооружения воды обеспечивает более быстрое и легкое скольжение, что усиливает развлекательный эффект.',
 		category: '16+'
 	},
 	{
-		image: '',
+		image: {logo},
 		name: '«Рафтинг»',
-		description: 'Lorem Ipsum asdasdasdasdasd',
+		description: 'Водные горки считаются наиболее популярными аттракционами в любом аквапарке. Принцип их работы не затейлив. Он заключается в спуске человека в бассейн или естественный водоем по гладкой, наклонной поверхности. Подача в верхнюю часть сооружения воды обеспечивает более быстрое и легкое скольжение, что усиливает развлекательный эффект.',
 		category: '16+'
 	},
 	{
-		image: '',
+		image: {logo},
 		name: '«Спирали»',
 		description: 'Lorem Ipsum',
 		category: '16+'
 	},
 	{
-		image: '',
+		image: {logo},
 		name: '«Каскады»',
 		description: 'Lorem Ipsum',
 		category: '16+'
 	},
 	{
-		image: '',
+		image: {logo},
 		name: '«Мертвая петля»',
 		description: 'Lorem Ipsum',
 		category: '16+'
 	},
 	{
-		image: '',
+		image: {logo},
 		name: '«Крыло»',
 		description: 'Lorem Ipsum',
 		category: '16+'
 	},
 	{
-		image: '',
+		image: {logo},
 		name: '«Супер-боул»',
 		description: 'Lorem Ipsum',
 		category: '16+'
 	},
 	{
-		image: '',
+		image: {logo},
 		name: 'Egypt',
 		description: 'Lorem Ipsum',
 		category: '16+'
 	},
 	{
-		image: '',
+		image: {logo},
 		name: 'Egypt',
 		description: 'Lorem Ipsum',
 		category: '16+'
@@ -249,3 +249,10 @@ export const SlidesAndServices = [
 		]
 	}
 ];
+
+export const SlideMok = {
+	name: 'Карусель',
+	description: 'Lorem ipsum dolor sit amet consectetur. Enim nulla suscipit leo integer bibendum ultrices. Nulla sed arcu amet montes tellus sit sem quis.',
+	category: '16+',
+	image: '',
+}

@@ -4,7 +4,7 @@ module slide {
 		name: string;
 		description: string;
 		category: string;
-		image: string;
+		image?: StaticImageData;
 		create_at?: string;
 		update_at?: string;
 	};
