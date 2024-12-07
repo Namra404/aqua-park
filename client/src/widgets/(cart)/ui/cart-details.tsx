@@ -24,7 +24,8 @@ export const CartDetails = ({
 			<Button
 				className='mt-auto'
 				onClick={async () => {
-					await handleSubmitOrder(tickets.orders.map(order => order.tickets[0].id));
+					router.push('/payment');
+					// await handleSubmitOrder(tickets.orders.map(order => order.tickets[0].id));
 					toast({
 						variant: 'default',
 						title: 'Профиль',

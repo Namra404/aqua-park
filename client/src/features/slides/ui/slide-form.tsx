@@ -10,28 +10,26 @@ import { useRouter } from 'next/navigation';
 import { ROUTER } from '~/shared/config/router';
 import { OrderService } from '~/entities/order/api';
 import moment from 'moment';
-import { AdditionalService } from '~/entities/service/api';
-import { TicketService } from '~/entities/ticket/api';
 import { Input } from '~/shared/ui/input';
 import { useState } from 'react';
+import { Switch } from '~/shared/ui/switch';
 
 export const SlideForm = (props: slide.SlideDto) => {
 	const { image, name, description, category, id } = props;
 	const router = useRouter();
 	const [promoCode, setPromoCode] = useState<string>('');
+	const [isDayTarif, setDayTarif] = useState<boolean>(true);
 
 	const handleAddToCart = async () => {
 		try {
 			const orderService = new OrderService();
-			const additionalService = new AdditionalService();
-			const ticketService = new TicketService();
 
 			const { data } = await orderService.createOrder({
 				promo_code: promoCode ?? '',
 				tickets: [
 					{
 						date: moment().format('YYYY-MM-DD'),
-						price: '0',
+						price: isDayTarif ? '500' : '1000',
 						slide_id: id!,
 						status: 'не забронирован',
 						type: 'до 12'
@@ -71,6 +69,13 @@ export const SlideForm = (props: slide.SlideDto) => {
 			</div>
 			<div className={'p-4 overflow-hidden'}>
 				<Text type={'small'}>{description}</Text>
+			</div>
+			<div className='flex gap-2'>
+				<Switch
+					checked={isDayTarif}
+					onCheckedChange={setDayTarif}
+				/>
+				{isDayTarif ? 'Дневной тариф до 12' : 'Вечерний тариф после 12'}
 			</div>
 			<Text
 				className={'p-4'}

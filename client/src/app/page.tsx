@@ -61,7 +61,6 @@ const handleGetServices = async () => {
 
 export default async function Home() {
 	const [sliders, services] = await Promise.all([handleGetSlides(), handleGetServices()]);
-	console.log(sliders);
 
 	return (
 		<Page>
