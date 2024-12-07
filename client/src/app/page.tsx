@@ -13,18 +13,18 @@ const handleGetSlides = async () => {
 
 	const token = cookiesStorage.get('aqua-park-user');
 
-	if (!token) {
-		return [];
-	}
-
 	const slidersService = new SlideService();
 	try {
-		const response = await slidersService.getSlides({
-			headers: {
-				Authorization: `Bearer ${token.value}`,
-				Accept: 'application/json'
-			}
-		});
+		const response = await slidersService.getSlides(
+			token
+				? {
+						headers: {
+							Authorization: `Bearer ${token.value}`,
+							Accept: 'application/json'
+						}
+					}
+				: undefined
+		);
 
 		return response.data ?? [];
 	} catch (error) {
@@ -40,18 +40,18 @@ const handleGetServices = async () => {
 
 	console.log(token?.value);
 
-	if (!token) {
-		return [];
-	}
-
 	const additionalService = new AdditionalService();
 	try {
-		const response = await additionalService.getServices({
-			headers: {
-				Authorization: `Bearer ${token.value}`,
-				Accept: 'application/json'
-			}
-		});
+		const response = await additionalService.getServices(
+			token
+				? {
+						headers: {
+							Authorization: `Bearer ${token.value}`,
+							Accept: 'application/json'
+						}
+					}
+				: undefined
+		);
 
 		return response.data ?? [];
 	} catch (error) {

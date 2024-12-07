@@ -18,17 +18,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
-
-
+Route::apiResource('slides', SlideController::class);
+Route::apiResource('service', ServiceController::class);
+Route::apiResource('slide-review', SlideReviewController::class);
 
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('tickets', TicketController::class);
-    Route::apiResource('slides', SlideController::class);
+//    Route::apiResource('slides', SlideController::class);
     Route::apiResource('ticket-service', TicketServiceController::class);
-    Route::apiResource('slide-review', SlideReviewController::class);
+//    Route::apiResource('slide-review', SlideReviewController::class);
     Route::apiResource('promo-code', PromoCodeController::class);
-    Route::apiResource('service', ServiceController::class);
+//    Route::apiResource('service', ServiceController::class);
     Route::apiResource('service-review', ServiceReviewController::class);
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('testing', Testing::class);
