@@ -3,9 +3,9 @@
 }
 
 .slide_modal {
-  @apply max-w-[800px] max-h-[600px] h-full p-0
+  @apply max-w-[800px] max-h-[630px] h-full p-0
 }
 
 .form_title {
-  @apply flex w-full
+  @apply flex w-full relative;
 }

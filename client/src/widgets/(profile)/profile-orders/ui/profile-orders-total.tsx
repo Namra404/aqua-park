@@ -1,5 +1,4 @@
 import { SlideCard } from '~/entities/popular-rollers/ui/popular-slide-card';
-import { ProfileAllSlideProps } from '~/entities/profile-order/model/types';
 import { ProfileOrder } from '~/entities/profile-order/ui/profile-order';
 
 const HistoryOrderCard = (props: { order: order.CartOrder }) => {

@@ -3,11 +3,10 @@ import { atom } from 'nanostores';
 import { LoginFormType, RegisterFormType } from '~/features/auth/model/schema';
 import { AuthService } from '../api';
 import Cookies from 'js-cookie';
-import { revalidatePath } from 'next/cache';
-import { ROUTER } from '~/shared/config/router';
 import { updatePages } from './actions';
 
 export const COOKIE_USER_KEY = 'aqua-park-user';
+export const AUTH_USER = 'aqua-park-user-data';
 
 export class AuthStorage {
 	private constructor(private readonly authService: AuthService) {}
@@ -32,7 +31,12 @@ export class AuthStorage {
 		try {
 			const response = await this.authService.login(values);
 			this._status.set(true);
-			Cookies.set(this.COOKIE_USER_KEY, response.data.token);
+			Cookies.set(this.COOKIE_USER_KEY, response.data.token, {
+				expires: 1 * 60 * 60 * 60
+			});
+			Cookies.set(AUTH_USER, JSON.stringify(response.data.user), {
+				expires: 1 * 60 * 60 * 60
+			});
 			await updatePages();
 		} catch (e) {
 			console.error(e);
@@ -42,7 +46,12 @@ export class AuthStorage {
 		try {
 			const response = await this.authService.register(values);
 			this._status.set(true);
-			Cookies.set(this.COOKIE_USER_KEY, response.data.token);
+			Cookies.set(this.COOKIE_USER_KEY, response.data.token, {
+				expires: 1 * 60 * 60 * 60
+			});
+			Cookies.set(AUTH_USER, JSON.stringify(response.data.user), {
+				expires: 1 * 60 * 60 * 60
+			});
 			await updatePages();
 		} catch (e) {
 			console.error(e);
@@ -51,6 +60,7 @@ export class AuthStorage {
 	async logout() {
 		this._status.set(false);
 		Cookies.remove(this.COOKIE_USER_KEY);
+		Cookies.remove(AUTH_USER);
 		await updatePages();
 	}
 

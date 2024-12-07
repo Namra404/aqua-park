@@ -1,7 +1,7 @@
 module promoCode {
 	type CreateParams = {
 		code: string;
-		discound: number;
+		discount: number;
 		expires_at: string;
 	};
 }

@@ -69,7 +69,9 @@ export const Header = () => {
 						<DropdownMenuContent>
 							<DropdownMenuLabel>Учетная запись</DropdownMenuLabel>
 							<DropdownMenuSeparator />
-							<DropdownMenuItem className='mb-1'>Профиль</DropdownMenuItem>
+							<DropdownMenuItem className='mb-1'>
+								<Link href={ROUTER.pages.PROFILE}>Профиль</Link>
+							</DropdownMenuItem>
 							<DropdownMenuItem>
 								<Button
 									variant={'destructive'}

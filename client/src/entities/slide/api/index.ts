@@ -3,8 +3,9 @@ import qs from 'qs';
 import { AxiosRequestConfig } from 'axios';
 
 export class SlideService {
-	getSlideReview(slideId: number) {
-		return api.fetch.get<slide.Review>('slide-review/', {
+	getSlideReview(slideId: number, config?: AxiosRequestConfig) {
+		return api.fetch.get<slide.Review[]>('slide-review/', {
+			...config,
 			params: {
 				slide_id: slideId
 			},
